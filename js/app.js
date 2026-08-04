@@ -154,6 +154,104 @@ function evaluate() {
     hardStops.push("Acute symptoms or support needs are not adequately controlled.");
   }
 
+  const lowEf = radio("lowEjectionFraction");
+
+  if (lowEf === "no") {
+    score += 2;
+  } else if (lowEf === "yesTolerates") {
+    score += 2;
+    strengths.push(
+      "Low ejection fraction is documented, but activity is tolerated without excessive fatigue or increased oxygen demand."
+    );
+  } else if (lowEf === "yesLimited") {
+    concerns.push(
+      "Low ejection fraction is accompanied by poor activity tolerance or increased oxygen demand."
+    );
+    followUps.push(
+      "Clarify cardiac tolerance for walking and intensive therapy."
+    );
+  } else {
+    concerns.push(
+      "Activity tolerance with an ejection fraction below 35% is not adequately documented."
+    );
+    followUps.push(
+      "Obtain current cardiac and therapy-tolerance documentation."
+    );
+  }
+
+  const oxygen = radio("oxygenRequirement");
+  const desaturation = radio("exertionalDesaturation");
+
+  if (oxygen === "none" || oxygen === "oneToThree") {
+    score += 3;
+    strengths.push(
+      "Oxygen requirement appears within the stated facility capability."
+    );
+  } else if (oxygen === "fourToFive") {
+    score += 1;
+    concerns.push(
+      "Oxygen requirement is near the stated facility maximum."
+    );
+  } else if (oxygen === "overFive") {
+    hardStops.push(
+      "Oxygen needs exceed the stated facility limit of 5 L/min by nasal cannula."
+    );
+  } else {
+    concerns.push(
+      "The oxygen-delivery device or respiratory support requires facility-specific review."
+    );
+    followUps.push(
+      "Confirm whether the receiving facility can manage the current respiratory support."
+    );
+  }
+
+  if (desaturation === "no") {
+    score += 2;
+    strengths.push(
+      "No significant exertional oxygen desaturation is reported."
+    );
+  } else if (desaturation === "yes") {
+    concerns.push(
+      "Oxygen saturation significantly declines with exertion."
+    );
+    followUps.push(
+      "Clarify exertional oxygen needs and therapy safety."
+    );
+  } else {
+    concerns.push(
+      "Exertional oxygen response has not been adequately assessed."
+    );
+    followUps.push(
+      "Document oxygen saturation during activity."
+    );
+  }
+
+  const infusion = radio("continuousInfusion");
+
+  if (infusion === "none") {
+    score += 2;
+  } else if (infusion === "fluids") {
+    score += 1;
+    strengths.push(
+      "Only routine IV fluids are being administered."
+    );
+  } else if (infusion === "insulin") {
+    hardStops.push(
+      "A continuous insulin drip is not manageable under the stated facility criteria."
+    );
+  } else if (infusion === "medication") {
+    hardStops.push(
+      "A continuous medication drip or vasopressor exceeds the stated facility capability."
+    );
+  } else {
+    concerns.push(
+      "Continuous infusion status is unclear."
+    );
+    followUps.push(
+      "Confirm whether any continuous IV medication is being administered."
+    );
+  }
+
   const prior = radio("priorFunction");
   const decline = radio("functionalDecline");
   const areas = checked("functionalAreas");
@@ -256,6 +354,31 @@ function evaluate() {
     hardStops.push("The patient is currently unable to participate meaningfully.");
   }
 
+  const scheduleTolerance = radio("therapyScheduleTolerance");
+
+  if (scheduleTolerance === "yes") {
+    score += 5;
+    strengths.push(
+      "The patient appears able to complete approximately three hours of therapy per day in separated sessions."
+    );
+  } else if (scheduleTolerance === "withRest") {
+    score += 3;
+    strengths.push(
+      "The patient may tolerate the therapy schedule with rest breaks or scheduling adjustments."
+    );
+  } else if (scheduleTolerance === "uncertain") {
+    concerns.push(
+      "Tolerance for the required therapy schedule is not adequately documented."
+    );
+    followUps.push(
+      "Clarify whether the patient can complete three total therapy hours per day in separated sessions."
+    );
+  } else {
+    hardStops.push(
+      "The patient is not currently able to tolerate the required therapy schedule."
+    );
+  }
+
   const learning = radio("learningCapacity");
   if (learning === "yes") {
     score += 5;
@@ -280,6 +403,32 @@ function evaluate() {
   } else {
     score -= 4;
     concerns.push("Meaningful improvement appears unlikely.");
+  }
+
+  const maxAssist = radio("maximumAssistanceTrend");
+
+  if (maxAssist === "notMax") {
+    score += 3;
+  } else if (maxAssist === "improving") {
+    score += 2;
+    strengths.push(
+      "The patient requires maximum assistance but has demonstrated measurable improvement."
+    );
+  } else if (maxAssist === "noImprovement") {
+    score -= 5;
+    concerns.push(
+      "The patient remains at maximum assistance without measurable improvement over 2–4 days."
+    );
+    followUps.push(
+      "Review whether sufficient functional progress is likely during the expected rehabilitation stay."
+    );
+  } else {
+    concerns.push(
+      "There is not enough observation or documentation to determine progress at the maximum-assistance level."
+    );
+    followUps.push(
+      "Obtain updated mobility and ADL documentation over the next 2–4 days."
+    );
   }
 
   const motivation = radio("motivation");
@@ -308,6 +457,117 @@ function evaluate() {
     concerns.push("Only one active medical-management issue is identified.");
   } else {
     concerns.push("No active medical-management need was identified.");
+  }
+
+  const diabetes = radio("diabetesManagement");
+
+  if (
+    diabetes === "notApplicable" ||
+    diabetes === "oralOrScheduled" ||
+    diabetes === "slidingScale"
+  ) {
+    score += 2;
+
+    if (diabetes === "slidingScale") {
+      strengths.push(
+        "Diabetes is being managed with sliding-scale insulin, which is within the stated facility capability."
+      );
+    }
+  } else if (diabetes === "insulinDrip") {
+    hardStops.push(
+      "A continuous insulin drip exceeds the stated facility capability."
+    );
+  } else {
+    concerns.push(
+      "Diabetes control or the current management plan is unclear."
+    );
+    followUps.push(
+      "Clarify glucose control and confirm that no continuous insulin infusion is required."
+    );
+  }
+
+  const wbc = radio("wbcStatus");
+
+  if (wbc === "notElevated") {
+    score += 2;
+  } else if (wbc === "knownTreated") {
+    score += 1;
+    strengths.push(
+      "Elevated WBC has a known cause and documented treatment or monitoring plan."
+    );
+  } else if (wbc === "unknownCause") {
+    concerns.push(
+      "WBC is above 14 without a clearly documented cause or treatment plan."
+    );
+    followUps.push(
+      "Clarify the cause of leukocytosis and how it is being treated or monitored."
+    );
+  } else {
+    concerns.push(
+      "Current WBC information is unavailable."
+    );
+    followUps.push(
+      "Obtain the current WBC result and related medical plan."
+    );
+  }
+
+  const kidney = radio("kidneyManagement");
+
+  if (
+    kidney === "notApplicable" ||
+    kidney === "medicationsFluids"
+  ) {
+    score += 2;
+
+    if (kidney === "medicationsFluids") {
+      strengths.push(
+        "Kidney function appears manageable with medications, fluids, or routine monitoring."
+      );
+    }
+  } else if (kidney === "dialysisAfterTherapy") {
+    score += 1;
+    strengths.push(
+      "Dialysis can be coordinated after daily therapy."
+    );
+  } else if (kidney === "dialysisConflict") {
+    concerns.push(
+      "Dialysis scheduling currently conflicts with the stated therapy schedule."
+    );
+    followUps.push(
+      "Confirm whether dialysis can be coordinated after daily therapy."
+    );
+  } else {
+    concerns.push(
+      "Kidney function may not be manageable at the rehabilitation level of care."
+    );
+    followUps.push(
+      "Clarify the kidney-management plan and current level-of-care needs."
+    );
+  }
+
+  const cancer = radio("cancerTreatment");
+
+  if (cancer === "none") {
+    score += 2;
+  } else if (cancer === "agreesToPause") {
+    score += 1;
+    strengths.push(
+      "The patient understands the facility-specific requirement to pause chemotherapy or radiation during rehabilitation."
+    );
+  } else if (cancer === "notDiscussed") {
+    concerns.push(
+      "The required temporary pause in chemotherapy or radiation has not been discussed or coordinated."
+    );
+    followUps.push(
+      "Coordinate the facility requirement with the patient, oncology team, and receiving rehabilitation team."
+    );
+  } else {
+    hardStops.push(
+      "Ongoing chemotherapy or radiation conflicts with the stated facility requirement."
+    );
+    followUps.push(
+      "Review alternative timing or placement with the oncology and rehabilitation teams."
+    );
   }
 
   const oversight = radio("physicianOversight");
@@ -359,6 +619,32 @@ function evaluate() {
     concerns.push("Caregiver or environmental support is not currently available.");
   }
 
+  const cognitivePlan = radio("cognitiveDischargePlan");
+
+  if (cognitivePlan === "notNeeded") {
+    score += 2;
+  } else if (cognitivePlan === "planAvailable") {
+    score += 2;
+    strengths.push(
+      "A caregiver-supported or supervised discharge plan is available for the patient’s cognitive needs."
+    );
+  } else if (cognitivePlan === "planUncertain") {
+    concerns.push(
+      "Cognitive or safety needs are present, but the caregiver-supported discharge plan is uncertain."
+    );
+    followUps.push(
+      "Confirm who will provide supervision or care after discharge."
+    );
+  } else {
+    score -= 4;
+    concerns.push(
+      "Cognitive or safety needs are present without a safe caregiver-supported discharge plan."
+    );
+    followUps.push(
+      "Develop a realistic supervised discharge plan before placement."
+    );
+  }
+
   const missing = checked("missingInformation")
     .filter((value) => value !== "none");
 
@@ -401,9 +687,9 @@ function evaluate() {
   let style;
 
   if (hardStops.length) {
-    category = "Hold for medical clarification";
+    category = "Not currently appropriate — medical or functional barrier";
     summary =
-      "One or more findings may make transfer unsafe or premature. Resolve these concerns before considering placement.";
+      "One or more current findings may require stabilization, treatment changes, additional functional progress, or facility review before placement.";
     style = "hold";
     hardStops.forEach((item) => uniquePush(concerns, item));
     uniquePush(
@@ -411,19 +697,19 @@ function evaluate() {
       "Escalate the medical-readiness findings for clinical review."
     );
   } else if (score >= 75) {
-    category = "Strong candidate for clinical review";
+    category = "Likely appropriate for clinical review";
     summary =
       "The responses show substantial rehabilitation need, participation potential, and medical complexity supporting further review.";
     style = "strong";
   } else if (score >= 55) {
-    category = "Potential candidate — clarification needed";
+    category = "Potential candidate — additional information needed";
     summary =
       "The patient may be appropriate, but missing evidence or conflicting factors should be clarified before a final decision.";
     style = "clarify";
   } else {
-    category = "Lower apparent fit";
+    category = "Likely exceeds or does not match this facility’s current level of care";
     summary =
-      "The current responses provide limited support for intensive inpatient rehabilitation. Compare the needs with other levels of care.";
+      "The current responses suggest that another level of care, additional recovery time, or a different facility capability may be more appropriate.";
     style = "lower-fit";
   }
 

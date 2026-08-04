@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "rehab-candidate-review-v1";
+const CACHE_NAME = "rehab-candidate-review-v2";
 const APP_FILES = [
   "./",
   "./index.html",

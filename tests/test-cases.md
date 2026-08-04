@@ -1,53 +1,84 @@
 # Fictional Test Cases
 
-## Case 1: Strong candidate
+Use only fictional, non-identifying cases.
 
-Expected result: `Strong candidate for clinical review`
+## 1. Likely appropriate
 
-Use favorable answers including:
+Expected: `Likely appropriate for clinical review`
 
-- Medically stable
-- No procedure pending
-- Major functional decline
-- PT and OT needed
-- Consistent participation
-- Meaningful improvement expected
-- Multiple active medical needs
-- Frequent physician oversight needed
-- Clear discharge destination
+Use stable medical status, no pending procedure, oxygen at or below 5 L/min without exertional desaturation, no medication drip, major functional decline, multiple therapies, therapy-schedule tolerance, expected improvement, and a clear discharge plan.
 
-## Case 2: Clarification needed
+## 2. Additional information needed
 
-Expected result: `Potential candidate — clarification needed`
+Expected: `Potential candidate — additional information needed`
 
-Use mixed answers including:
+Use uncertain EF tolerance, unknown exertional oxygen response, missing therapy-tolerance documentation, unavailable WBC information, uncertain dialysis scheduling, cancer-treatment pause not discussed, or an uncertain cognitive discharge plan.
 
-- Moderate decline
-- Partial goals
-- Limited but improving participation
-- Uncertain physician oversight
-- Missing therapy-tolerance documentation
+## 3. Medical or functional barrier
 
-## Case 3: Medical hold
+Expected: `Not currently appropriate — medical or functional barrier`
 
-Expected result: `Hold for medical clarification`
+Test each separately:
 
-Select one or more:
-
-- Not medically stable
+- Medically unstable
 - Major procedure pending
 - Acute symptoms uncontrolled
-- Unable to participate meaningfully
+- Oxygen above 5 L/min
+- Continuous insulin drip
+- Medication drip or vasopressor
+- Unable to tolerate the therapy schedule
+- Chemotherapy or radiation continuing during rehabilitation
 
-## Case 4: Lower apparent fit
+## 4. Lower facility fit
 
-Expected result: `Lower apparent fit`
+Expected: `Likely exceeds or does not match this facility’s current level of care`
 
-Use answers including:
+Use minor decline, one therapy discipline, lower level of care sufficient, improvement unlikely, little medical complexity, and no need for frequent physician oversight.
 
-- Minor decline
-- One therapy discipline
-- Lower level likely sufficient
-- Improvement unlikely
-- Little active medical complexity
-- Physician oversight not needed
+## 5. Low EF with adequate tolerance
+
+Expected: no automatic barrier.
+
+## 6. Oxygen at 5 L/min without desaturation
+
+Expected: no automatic barrier; near facility maximum noted.
+
+## 7. Sliding-scale insulin
+
+Expected: manageable under stated facility capability.
+
+## 8. WBC above 14 with known cause and treatment plan
+
+Expected: no automatic barrier.
+
+## 9. WBC above 14 with unknown cause
+
+Expected: clarification and follow-up for leukocytosis.
+
+## 10. Dialysis after therapy
+
+Expected: no automatic barrier.
+
+## 11. Dialysis scheduling conflict
+
+Expected: concern and scheduling follow-up.
+
+## 12. Cancer treatment paused
+
+Expected: no automatic barrier; requirement identified as facility-specific.
+
+## 13. Maximum assistance with recent improvement
+
+Expected: recent progress recognized.
+
+## 14. Maximum assistance without improvement for 2–4 days
+
+Expected: concern about likely functional progress.
+
+## 15. Confusion with caregiver plan
+
+Expected: no automatic barrier.
+
+## 16. Confusion without safe discharge support
+
+Expected: major discharge concern and follow-up.

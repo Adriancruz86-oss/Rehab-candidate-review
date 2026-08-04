@@ -147,11 +147,11 @@
         </fieldset>
 
         <fieldset class="question-card hard-stop-question">
-          <legend>Are oxygen needs, vital signs, pain, and acute symptoms reasonably controlled?</legend>
+          <legend>Are vital signs, pain, acute symptoms, and medical conditions reasonably stable or manageable?</legend>
 
           <label>
             <input type="radio" name="acuteSymptomsControlled" value="yes" required>
-            <span>Yes</span>
+            <span>Yes, stable or manageable at the rehabilitation level of care</span>
           </label>
 
           <label>
@@ -162,6 +162,107 @@
           <label>
             <input type="radio" name="acuteSymptomsControlled" value="no">
             <span>No</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Is the patient currently receiving a continuous IV infusion?</legend>
+
+          <label>
+            <input type="radio" name="continuousInfusion" value="none" required>
+            <span>No continuous infusion</span>
+          </label>
+
+          <label>
+            <input type="radio" name="continuousInfusion" value="fluids">
+            <span>Routine IV fluids only</span>
+          </label>
+
+          <label>
+            <input type="radio" name="continuousInfusion" value="insulin">
+            <span>Continuous insulin drip</span>
+          </label>
+
+          <label>
+            <input type="radio" name="continuousInfusion" value="medication">
+            <span>Another medication drip, vasopressor, or continuous therapeutic infusion</span>
+          </label>
+
+          <label>
+            <input type="radio" name="continuousInfusion" value="uncertain">
+            <span>Unclear</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>What is the patient’s current oxygen requirement?</legend>
+
+          <label>
+            <input type="radio" name="oxygenRequirement" value="none" required>
+            <span>No supplemental oxygen</span>
+          </label>
+
+          <label>
+            <input type="radio" name="oxygenRequirement" value="oneToThree">
+            <span>1–3 L/min by nasal cannula</span>
+          </label>
+
+          <label>
+            <input type="radio" name="oxygenRequirement" value="fourToFive">
+            <span>4–5 L/min by nasal cannula</span>
+          </label>
+
+          <label>
+            <input type="radio" name="oxygenRequirement" value="overFive">
+            <span>More than 5 L/min by nasal cannula</span>
+          </label>
+
+          <label>
+            <input type="radio" name="oxygenRequirement" value="otherDevice">
+            <span>Another oxygen-delivery device or level of respiratory support</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Does oxygen saturation significantly decline with exertion?</legend>
+
+          <label>
+            <input type="radio" name="exertionalDesaturation" value="no" required>
+            <span>No</span>
+          </label>
+
+          <label>
+            <input type="radio" name="exertionalDesaturation" value="yes">
+            <span>Yes</span>
+          </label>
+
+          <label>
+            <input type="radio" name="exertionalDesaturation" value="uncertain">
+            <span>Not assessed or unclear</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Does the patient have a documented ejection fraction below 35%?</legend>
+
+          <label>
+            <input type="radio" name="lowEjectionFraction" value="no" required>
+            <span>No or not documented</span>
+          </label>
+
+          <label>
+            <input type="radio" name="lowEjectionFraction" value="yesTolerates">
+            <span>Yes, but walking and therapy are tolerated without excessive fatigue or increased oxygen demand</span>
+          </label>
+
+          <label>
+            <input type="radio" name="lowEjectionFraction" value="yesLimited">
+            <span>Yes, with excessive fatigue, respiratory distress, or increased oxygen demand</span>
+          </label>
+
+          <label>
+            <input type="radio" name="lowEjectionFraction" value="uncertain">
+            <span>Yes, but activity tolerance has not been adequately assessed</span>
           </label>
         </fieldset>
       </section>
@@ -364,7 +465,35 @@
         </fieldset>
 
         <fieldset class="question-card">
-          <legend>Can the patient follow instructions, learn strategies, or be consistently redirected?</legend>
+          <legend>Can the patient participate in approximately three total hours of therapy per day, five days per week, in separated sessions?</legend>
+
+          <p class="field-help">
+            Therapy may be divided throughout the day and is not performed as one continuous three-hour session.
+          </p>
+
+          <label>
+            <input type="radio" name="therapyScheduleTolerance" value="yes" required>
+            <span>Yes</span>
+          </label>
+
+          <label>
+            <input type="radio" name="therapyScheduleTolerance" value="withRest">
+            <span>Likely, with rest breaks or scheduling adjustments</span>
+          </label>
+
+          <label>
+            <input type="radio" name="therapyScheduleTolerance" value="uncertain">
+            <span>Not yet adequately assessed</span>
+          </label>
+
+          <label>
+            <input type="radio" name="therapyScheduleTolerance" value="no">
+            <span>No, not currently</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Can the patient follow instructions, learn strategies, or participate with cueing and supervision?</legend>
 
           <label>
             <input type="radio" name="learningCapacity" value="yes" required>
@@ -413,6 +542,30 @@
           <label>
             <input type="radio" name="improvementExpected" value="unlikely">
             <span>Unlikely</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Does the patient currently require maximum assistance for mobility or activities of daily living?</legend>
+
+          <label>
+            <input type="radio" name="maximumAssistanceTrend" value="notMax" required>
+            <span>No, the patient does not currently require maximum assistance</span>
+          </label>
+
+          <label>
+            <input type="radio" name="maximumAssistanceTrend" value="improving">
+            <span>Yes, with measurable improvement during the last 2–4 days</span>
+          </label>
+
+          <label>
+            <input type="radio" name="maximumAssistanceTrend" value="noImprovement">
+            <span>Yes, without measurable improvement during the last 2–4 days</span>
+          </label>
+
+          <label>
+            <input type="radio" name="maximumAssistanceTrend" value="insufficientTime">
+            <span>Yes, but there is not enough observation or documentation to determine the trend</span>
           </label>
         </fieldset>
 
@@ -510,6 +663,120 @@
         </fieldset>
 
         <fieldset class="question-card">
+          <legend>How is the patient’s diabetes currently managed?</legend>
+
+          <label>
+            <input type="radio" name="diabetesManagement" value="notApplicable" required>
+            <span>No diabetes or no active diabetes-management concern</span>
+          </label>
+
+          <label>
+            <input type="radio" name="diabetesManagement" value="oralOrScheduled">
+            <span>Diet, oral medication, or scheduled insulin</span>
+          </label>
+
+          <label>
+            <input type="radio" name="diabetesManagement" value="slidingScale">
+            <span>Sliding-scale insulin</span>
+          </label>
+
+          <label>
+            <input type="radio" name="diabetesManagement" value="insulinDrip">
+            <span>Continuous insulin drip</span>
+          </label>
+
+          <label>
+            <input type="radio" name="diabetesManagement" value="uncontrolled">
+            <span>Uncontrolled or unclear</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>If the WBC count is above 14, is the cause known and being treated or monitored?</legend>
+
+          <label>
+            <input type="radio" name="wbcStatus" value="notElevated" required>
+            <span>WBC is 14 or lower</span>
+          </label>
+
+          <label>
+            <input type="radio" name="wbcStatus" value="knownTreated">
+            <span>Above 14, with a known cause and documented treatment or monitoring plan</span>
+          </label>
+
+          <label>
+            <input type="radio" name="wbcStatus" value="unknownCause">
+            <span>Above 14, but the cause or treatment plan is unclear</span>
+          </label>
+
+          <label>
+            <input type="radio" name="wbcStatus" value="unknownValue">
+            <span>Current WBC information is unavailable</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Is kidney function manageable at the rehabilitation level of care?</legend>
+
+          <label>
+            <input type="radio" name="kidneyManagement" value="notApplicable" required>
+            <span>No significant kidney-management concern</span>
+          </label>
+
+          <label>
+            <input type="radio" name="kidneyManagement" value="medicationsFluids">
+            <span>Yes, with medications, fluids, or routine monitoring</span>
+          </label>
+
+          <label>
+            <input type="radio" name="kidneyManagement" value="dialysisAfterTherapy">
+            <span>Dialysis is required and can be scheduled after daily therapy</span>
+          </label>
+
+          <label>
+            <input type="radio" name="kidneyManagement" value="dialysisConflict">
+            <span>Dialysis is required but cannot currently be coordinated after therapy</span>
+          </label>
+
+          <label>
+            <input type="radio" name="kidneyManagement" value="notManageable">
+            <span>No or unclear</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Is the patient receiving active chemotherapy or radiation?</legend>
+
+          <label>
+            <input type="radio" name="cancerTreatment" value="none" required>
+            <span>No active chemotherapy or radiation</span>
+          </label>
+
+          <label>
+            <input type="radio" name="cancerTreatment" value="agreesToPause">
+            <span>Yes, and the patient understands and agrees to pause treatment during rehabilitation</span>
+          </label>
+
+          <label>
+            <input type="radio" name="cancerTreatment" value="notDiscussed">
+            <span>Yes, but the temporary pause has not been discussed or coordinated</span>
+          </label>
+
+          <label>
+            <input type="radio" name="cancerTreatment" value="willNotPause">
+            <span>Yes, and treatment will continue during the rehabilitation stay</span>
+          </label>
+        </fieldset>
+
+        <div class="card review-notice">
+          <p>
+            This reflects a facility-specific operational requirement.
+            Any chemotherapy or radiation pause must be coordinated with the oncology team
+            and is not a general medical recommendation.
+          </p>
+        </div>
+
+        <fieldset class="question-card">
           <legend>Does the patient appear to require frequent physician oversight specifically related to rehabilitation?</legend>
 
           <label>
@@ -597,6 +864,30 @@
           <label>
             <input type="radio" name="supportAvailable" value="no">
             <span>No</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="question-card">
+          <legend>Does confusion, impaired memory, or reduced safety awareness create a need for caregiver support after discharge?</legend>
+
+          <label>
+            <input type="radio" name="cognitiveDischargePlan" value="notNeeded" required>
+            <span>No significant cognitive discharge-support need is identified</span>
+          </label>
+
+          <label>
+            <input type="radio" name="cognitiveDischargePlan" value="planAvailable">
+            <span>Yes, and a reliable caregiver or supervised discharge plan is available</span>
+          </label>
+
+          <label>
+            <input type="radio" name="cognitiveDischargePlan" value="planUncertain">
+            <span>Yes, but the caregiver or supervised discharge plan is uncertain</span>
+          </label>
+
+          <label>
+            <input type="radio" name="cognitiveDischargePlan" value="noPlan">
+            <span>Yes, and no safe caregiver-supported discharge plan is currently identified</span>
           </label>
         </fieldset>
       </section>
